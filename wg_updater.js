@@ -1,10 +1,6 @@
 const chrome = require("selenium-webdriver/chrome");
 const { By, Key, Builder } = require("selenium-webdriver");
 var config = require("./settings/config.js");
-const screen = {
-  width: 640,
-  height: 480,
-};
 
 async function update_offer(interval) {
   let options = new chrome.Options();
@@ -40,7 +36,7 @@ async function update_offer(interval) {
   await driver.sleep(5000).then(console.log("Login successful!"));
 
   await driver.get(
-    "https://www.wg-gesucht.de/angebot-bearbeiten.html?action=update_offer&offer_id=" +
+    "https://www.wg-gesucht.de/gesuch-bearbeiten.html?action=update_request&request_id=" +
       config.offer.id
   );
 
@@ -48,7 +44,7 @@ async function update_offer(interval) {
 
   while (true) {
     await driver.executeScript(() => {
-      document.getElementById("update_offer_nav").click();
+      document.getElementById("update_request").click();
     });
     console.log(
       "Ad last updated on: " +
